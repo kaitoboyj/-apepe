@@ -132,9 +132,7 @@ export default function Hero() {
                   href="#"
                   className="flex items-center gap-2 px-4 py-2 bg-apepe-polygon/10 border border-apepe-polygon/40 rounded-lg hover:bg-apepe-polygon/20 hover:border-apepe-polygon transition-all duration-300 group"
                 >
-                  <svg viewBox="0 0 32 32" className="w-4 h-4 group-hover:scale-110 transition-transform" fill="none">
-                    <path d="M16 4L26.3923 10V22L16 28L5.6077 22V10L16 4Z" stroke="#8247e5" strokeWidth="2"/>
-                  </svg>
+                  <img src="/assets/polygon.png" alt="Polygon" className="w-4 h-4 group-hover:scale-110 transition-transform object-contain" />
                   <span className="text-xs font-bold text-white">Polygon</span>
                 </a>
 
@@ -142,10 +140,7 @@ export default function Hero() {
                   href="#"
                   className="flex items-center gap-2 px-4 py-2 bg-apepe-bsc/10 border border-apepe-bsc/40 rounded-lg hover:bg-apepe-bsc/20 hover:border-apepe-bsc transition-all duration-300 group"
                 >
-                  <svg viewBox="0 0 32 32" className="w-4 h-4 group-hover:scale-110 transition-transform">
-                    <circle cx="16" cy="16" r="10" stroke="#f3ba2f" strokeWidth="2" fill="none"/>
-                    <path d="M12 16L16 12L20 16L16 20L12 16Z" fill="#f3ba2f"/>
-                  </svg>
+                  <img src="/assets/bnb.png" alt="BSC" className="w-4 h-4 group-hover:scale-110 transition-transform object-contain" />
                   <span className="text-xs font-bold text-white">BSC</span>
                 </a>
 
@@ -210,10 +205,8 @@ export default function Hero() {
                 transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
                 className="absolute top-1/2 -right-6 w-14 h-14"
               >
-                <div className="w-8 h-8 rounded-full bg-apepe-polygon/20 border border-apepe-polygon/50 flex items-center justify-center backdrop-blur-sm">
-                  <svg viewBox="0 0 32 32" className="w-4 h-4" fill="none">
-                    <path d="M16 4L26.3923 10V22L16 28L5.6077 22V10L16 4Z" stroke="#8247e5" strokeWidth="2"/>
-                  </svg>
+                <div className="w-8 h-8 rounded-full bg-apepe-polygon/20 border border-apepe-polygon/50 flex items-center justify-center backdrop-blur-sm overflow-hidden">
+                  <img src="/assets/polygon.png" alt="Polygon" className="w-5 h-5 object-contain" />
                 </div>
               </motion.div>
 
@@ -222,10 +215,8 @@ export default function Hero() {
                 transition={{ duration: 15, repeat: Infinity, ease: 'linear' }}
                 className="absolute top-1/4 -left-6 w-14 h-14"
               >
-                <div className="w-8 h-8 rounded-full bg-apepe-bsc/20 border border-apepe-bsc/50 flex items-center justify-center backdrop-blur-sm">
-                  <svg viewBox="0 0 32 32" className="w-4 h-4">
-                    <circle cx="16" cy="16" r="10" stroke="#f3ba2f" strokeWidth="2" fill="none"/>
-                  </svg>
+                <div className="w-8 h-8 rounded-full bg-apepe-bsc/20 border border-apepe-bsc/50 flex items-center justify-center backdrop-blur-sm overflow-hidden">
+                  <img src="/assets/bnb.png" alt="BSC" className="w-5 h-5 object-contain" />
                 </div>
               </motion.div>
             </div>

@@ -127,15 +127,11 @@ export default function FeatureCards() {
                           <path d="M16 2L15.5 3.5V21L16 21.5L25 16L16 2Z" fill="#627eea" />
                         </svg>
                       </div>
-                      <div className="w-8 h-8 rounded-full bg-apepe-polygon/10 border border-apepe-polygon/30 flex items-center justify-center">
-                        <svg viewBox="0 0 32 32" className="w-4 h-4" fill="none">
-                          <path d="M16 4L26.3923 10V22L16 28L5.6077 22V10L16 4Z" stroke="#8247e5" strokeWidth="2"/>
-                        </svg>
+                      <div className="w-8 h-8 rounded-full bg-apepe-polygon/10 border border-apepe-polygon/30 flex items-center justify-center overflow-hidden">
+                        <img src="/assets/polygon.png" alt="Polygon" className="w-5 h-5 object-contain" />
                       </div>
-                      <div className="w-8 h-8 rounded-full bg-apepe-bsc/10 border border-apepe-bsc/30 flex items-center justify-center">
-                        <svg viewBox="0 0 32 32" className="w-4 h-4">
-                          <circle cx="16" cy="16" r="10" stroke="#f3ba2f" strokeWidth="2" fill="none"/>
-                        </svg>
+                      <div className="w-8 h-8 rounded-full bg-apepe-bsc/10 border border-apepe-bsc/30 flex items-center justify-center overflow-hidden">
+                        <img src="/assets/bnb.png" alt="BSC" className="w-5 h-5 object-contain" />
                       </div>
                     </div>
                     <div className="flex-1 h-px bg-apepe-border" />
