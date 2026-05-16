@@ -1,10 +1,135 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { Zap, Hand, TrendingUp, Rocket } from 'lucide-react'
-import { motion } from 'framer-motion'
+import { Zap, Hand, TrendingUp, Rocket, Sparkles } from 'lucide-react'
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 
 gsap.registerPlugin(ScrollTrigger)
+
+function TiltCard({ card, i }: { card: any; i: number }) {
+  const x = useMotionValue(0)
+  const y = useMotionValue(0)
+
+  const mouseXSpring = useSpring(x)
+  const mouseYSpring = useSpring(y)
+
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ['10deg', '-10deg'])
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ['-10deg', '10deg'])
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    const width = rect.width
+    const height = rect.height
+    const mouseX = e.clientX - rect.left
+    const mouseY = e.clientY - rect.top
+    const xPct = mouseX / width - 0.5
+    const yPct = mouseY / height - 0.5
+    x.set(xPct)
+    y.set(yPct)
+  }
+
+  const handleMouseLeave = () => {
+    x.set(0)
+    y.set(0)
+  }
+
+  return (
+    <motion.div
+      style={{
+        rotateX,
+        rotateY,
+        transformStyle: 'preserve-3d',
+      }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="group relative rounded-3xl bg-gradient-to-br from-white/10 to-white/5 border border-white/10 p-8 hover:border-apepe-green/50 transition-colors duration-500 overflow-hidden flex flex-col min-h-[400px]"
+    >
+      {/* Dynamic Background Glow */}
+      <div className="absolute inset-0 bg-gradient-to-br from-apepe-green/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      
+      {/* 3D Content Elements */}
+      <div style={{ transform: 'translateZ(50px)' }} className="relative z-10 flex flex-col h-full">
+        <div className="flex items-start justify-between mb-8">
+          <div className="p-4 rounded-2xl bg-apepe-green/10 group-hover:bg-apepe-green/20 group-hover:scale-110 transition-all duration-300">
+            <card.icon className="w-8 h-8 text-apepe-green" />
+          </div>
+          
+          {i === 0 && (
+            <div className="relative">
+              <motion.div 
+                animate={{ rotate: 360 }}
+                transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
+                className="absolute -inset-2 border-2 border-dashed border-apepe-green/30 rounded-full" 
+              />
+              <div className="w-16 h-16 rounded-full border-2 border-apepe-green/40 overflow-hidden bg-apepe-bg relative z-10">
+                <img src={card.image} alt="$APEPE" className="w-full h-full object-cover" />
+              </div>
+            </div>
+          )}
+          
+          {i === 2 && (
+            <motion.div 
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+              className="w-16 h-16 rounded-2xl bg-apepe-green/10 flex items-center justify-center border border-apepe-green/30"
+            >
+              <Rocket className="w-8 h-8 text-apepe-green" />
+            </motion.div>
+          )}
+        </div>
+
+        <div className="mb-6" style={{ transform: 'translateZ(30px)' }}>
+          <h3 className="text-2xl font-black text-white uppercase leading-tight tracking-tight">
+            {card.title}
+          </h3>
+          {card.titleAccent && (
+            <h4 className="text-2xl font-black text-apepe-green uppercase leading-tight tracking-tight mt-1">
+              {card.titleAccent}
+            </h4>
+          )}
+        </div>
+
+        <p className="text-gray-400 text-lg leading-relaxed flex-grow" style={{ transform: 'translateZ(20px)' }}>
+          {card.desc}
+        </p>
+
+        {card.chains && (
+          <div className="mt-8 pt-6 border-t border-white/10" style={{ transform: 'translateZ(40px)' }}>
+            <div className="flex items-center gap-4">
+              <div className="flex -space-x-2">
+                {[
+                  { name: 'Solana', color: 'apepe-solana', icon: 'sol' },
+                  { name: 'Ethereum', color: 'apepe-ethereum', icon: 'eth' },
+                  { name: 'Polygon', color: 'poly', icon: '/assets/polygon.png' },
+                  { name: 'BSC', color: 'bnb', icon: '/assets/bnb.png' }
+                ].map((chain) => (
+                  <div key={chain.name} className="w-10 h-10 rounded-full bg-apepe-bg border-2 border-white/10 flex items-center justify-center overflow-hidden">
+                    {chain.name === 'Solana' ? (
+                      <svg viewBox="0 0 32 32" className="w-5 h-5">
+                        <path d="M4 16.5L8 12.5L16 20.5L24 12.5L28 16.5L16 28.5L4 16.5Z" fill="#00ffa3" />
+                      </svg>
+                    ) : chain.name === 'Ethereum' ? (
+                      <svg viewBox="0 0 32 32" className="w-5 h-5">
+                        <path d="M16 2L15.5 3.5V21L16 21.5L25 16L16 2Z" fill="#627eea" />
+                      </svg>
+                    ) : (
+                      <img src={chain.icon} className="w-5 h-5 object-contain" />
+                    )}
+                  </div>
+                ))}
+              </div>
+              <div className="flex-1 h-px bg-white/5" />
+              <Sparkles className="w-5 h-5 text-apepe-green animate-pulse" />
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Decorative Corner Element */}
+      <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-apepe-green/5 rounded-full blur-3xl pointer-events-none" />
+    </motion.div>
+  )
+}
 
 export default function FeatureCards() {
   const sectionRef = useRef<HTMLDivElement>(null)
@@ -18,11 +143,11 @@ export default function FeatureCards() {
           start: 'top 75%',
           toggleActions: 'play none none reverse',
         },
-        y: 80,
+        y: 100,
         opacity: 0,
-        duration: 0.8,
-        stagger: 0.2,
-        ease: 'power3.out',
+        duration: 1,
+        stagger: 0.3,
+        ease: 'back.out(1.2)',
       })
     }, sectionRef)
 
@@ -56,98 +181,11 @@ export default function FeatureCards() {
   ]
 
   return (
-    <section
-      id="features"
-      ref={sectionRef}
-      className="relative py-14"
-    >
+    <section id="features" ref={sectionRef} className="relative py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div
-          ref={cardsRef}
-          className="grid md:grid-cols-3 gap-5"
-        >
+        <div ref={cardsRef} className="grid md:grid-cols-3 gap-8">
           {cards.map((card, i) => (
-            <motion.div
-              key={card.title}
-              whileHover={{ y: -8, transition: { duration: 0.3 } }}
-              className="group relative rounded-2xl bg-apepe-card border border-apepe-border p-6 hover:border-apepe-green/60 transition-all duration-500 overflow-hidden flex flex-col"
-            >
-              {/* Glow effect on hover */}
-              <div className="absolute inset-0 bg-gradient-to-b from-apepe-green/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-              <div className="relative z-10 flex flex-col flex-grow">
-                <div className="flex items-start justify-between mb-4">
-                  <div className="p-2.5 rounded-lg bg-apepe-green/10 group-hover:bg-apepe-green/20 transition-colors">
-                    <card.icon className="w-5 h-5 text-apepe-green" />
-                  </div>
-                  {i === 0 && (
-                    <div className="relative">
-                      <div className="w-14 h-14 rounded-full border-2 border-apepe-green/40 overflow-hidden bg-apepe-bg">
-                        <img
-                          src={card.image}
-                          alt="$APEPE"
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <div className="absolute -inset-1 rounded-full border border-apepe-green/20 animate-pulse" />
-                    </div>
-                  )}
-                  {i === 2 && (
-                    <div className="w-12 h-12 rounded-full bg-apepe-green/10 flex items-center justify-center border border-apepe-green/30">
-                      <Rocket className="w-5 h-5 text-apepe-green" />
-                    </div>
-                  )}
-                </div>
-
-                <div className="mb-3">
-                  <h3 className="text-lg font-black text-white uppercase leading-tight">
-                    {card.title}
-                  </h3>
-                  {card.titleAccent && (
-                    <h4 className="text-lg font-black text-apepe-green uppercase leading-tight">
-                      {card.titleAccent}
-                    </h4>
-                  )}
-                </div>
-
-                <p className="text-gray-400 text-sm leading-relaxed flex-grow">
-                  {card.desc}
-                </p>
-
-                {card.chains && (
-                  <div className="flex items-center gap-3 mt-4 pt-3 border-t border-apepe-border">
-                    <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 rounded-full bg-apepe-solana/10 border border-apepe-solana/30 flex items-center justify-center">
-                        <svg viewBox="0 0 32 32" className="w-4 h-4">
-                          <path d="M4 16.5L8 12.5L16 20.5L24 12.5L28 16.5L16 28.5L4 16.5Z" fill="#00ffa3" />
-                        </svg>
-                      </div>
-                      <div className="w-8 h-8 rounded-full bg-apepe-ethereum/10 border border-apepe-ethereum/30 flex items-center justify-center">
-                        <svg viewBox="0 0 32 32" className="w-4 h-4">
-                          <path d="M16 2L15.5 3.5V21L16 21.5L25 16L16 2Z" fill="#627eea" />
-                        </svg>
-                      </div>
-                      <div className="w-8 h-8 rounded-full bg-apepe-polygon/10 border border-apepe-polygon/30 flex items-center justify-center overflow-hidden">
-                        <img src="/assets/polygon.png" alt="Polygon" className="w-5 h-5 object-contain" />
-                      </div>
-                      <div className="w-8 h-8 rounded-full bg-apepe-bsc/10 border border-apepe-bsc/30 flex items-center justify-center overflow-hidden">
-                        <img src="/assets/bnb.png" alt="BSC" className="w-5 h-5 object-contain" />
-                      </div>
-                    </div>
-                    <div className="flex-1 h-px bg-apepe-border" />
-                    <div className="flex gap-1">
-                      {[1, 2, 3].map((b) => (
-                        <div
-                          key={b}
-                          className="w-1.5 h-1.5 rounded-full bg-apepe-green animate-pulse"
-                          style={{ animationDelay: `${b * 0.2}s` }}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            </motion.div>
+            <TiltCard key={card.title} card={card} i={i} />
           ))}
         </div>
       </div>
