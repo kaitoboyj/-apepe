@@ -74,10 +74,11 @@ export default function CompetitiveAdvantage() {
 
         <div
           ref={tableRef}
-          className="rounded-2xl border border-apepe-border bg-apepe-card/80 backdrop-blur-sm overflow-hidden"
+          className="rounded-2xl border border-apepe-border bg-apepe-card/80 backdrop-blur-sm overflow-hidden overflow-x-auto"
         >
-          {/* Header Row */}
-          <div className="grid grid-cols-5 border-b border-apepe-border">
+          <div className="min-w-[600px] md:min-w-full">
+            {/* Header Row */}
+            <div className="grid grid-cols-5 border-b border-apepe-border">
             <div className="p-4 sm:p-5 bg-apepe-bg/60" />
             {columns.map((col) => (
               <div
@@ -152,6 +153,7 @@ export default function CompetitiveAdvantage() {
 
           {/* Bottom accent for $APEPE column */}
           <div className="h-1 bg-gradient-to-r from-transparent via-apepe-green/40 to-transparent" />
+          </div>
         </div>
       </div>
     </section>

@@ -179,10 +179,10 @@ export default function Hero() {
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-                className="absolute -top-4 -right-4 w-14 h-14"
+                className="absolute -top-4 -right-4 w-10 h-10 sm:w-14 sm:h-14"
               >
-                <div className="w-10 h-10 rounded-full bg-apepe-solana/20 border border-apepe-solana/50 flex items-center justify-center backdrop-blur-sm">
-                  <svg viewBox="0 0 32 32" className="w-5 h-5">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-apepe-solana/20 border border-apepe-solana/50 flex items-center justify-center backdrop-blur-sm">
+                  <svg viewBox="0 0 32 32" className="w-4 h-4 sm:w-5 sm:h-5">
                     <path d="M4 16.5L8 12.5L16 20.5L24 12.5L28 16.5L16 28.5L4 16.5Z" fill="#00ffa3" />
                   </svg>
                 </div>
@@ -191,10 +191,10 @@ export default function Hero() {
               <motion.div
                 animate={{ rotate: -360 }}
                 transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
-                className="absolute -bottom-2 -left-2 w-14 h-14"
+                className="absolute -bottom-2 -left-2 w-10 h-10 sm:w-14 sm:h-14"
               >
-                <div className="w-10 h-10 rounded-full bg-apepe-ethereum/20 border border-apepe-ethereum/50 flex items-center justify-center backdrop-blur-sm">
-                  <svg viewBox="0 0 32 32" className="w-5 h-5">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-apepe-ethereum/20 border border-apepe-ethereum/50 flex items-center justify-center backdrop-blur-sm">
+                  <svg viewBox="0 0 32 32" className="w-4 h-4 sm:w-5 sm:h-5">
                     <path d="M16 2L15.5 3.5V21L16 21.5L25 16L16 2Z" fill="#627eea" />
                   </svg>
                 </div>
@@ -203,20 +203,20 @@ export default function Hero() {
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
-                className="absolute top-1/2 -right-6 w-14 h-14"
+                className="absolute top-1/2 -right-6 w-10 h-10 sm:w-14 sm:h-14"
               >
-                <div className="w-8 h-8 rounded-full bg-apepe-polygon/20 border border-apepe-polygon/50 flex items-center justify-center backdrop-blur-sm overflow-hidden">
-                  <img src="/assets/polygon.png" alt="Polygon" className="w-5 h-5 object-contain" />
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-apepe-polygon/20 border border-apepe-polygon/50 flex items-center justify-center backdrop-blur-sm overflow-hidden">
+                  <img src="/assets/polygon.png" alt="Polygon" className="w-4 h-4 sm:w-5 sm:h-5 object-contain" />
                 </div>
               </motion.div>
 
               <motion.div
                 animate={{ rotate: -360 }}
                 transition={{ duration: 15, repeat: Infinity, ease: 'linear' }}
-                className="absolute top-1/4 -left-6 w-14 h-14"
+                className="absolute top-1/4 -left-6 w-10 h-10 sm:w-14 sm:h-14"
               >
-                <div className="w-8 h-8 rounded-full bg-apepe-bsc/20 border border-apepe-bsc/50 flex items-center justify-center backdrop-blur-sm overflow-hidden">
-                  <img src="/assets/bnb.png" alt="BSC" className="w-5 h-5 object-contain" />
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-apepe-bsc/20 border border-apepe-bsc/50 flex items-center justify-center backdrop-blur-sm overflow-hidden">
+                  <img src="/assets/bnb.png" alt="BSC" className="w-4 h-4 sm:w-5 sm:h-5 object-contain" />
                 </div>
               </motion.div>
             </div>
