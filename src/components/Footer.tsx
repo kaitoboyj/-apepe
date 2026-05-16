@@ -1,7 +1,30 @@
-import { Shield, Lock, Search, BarChart3, Send, Gift, Twitter } from 'lucide-react'
+import { Shield, Lock, Search, BarChart3, Send, Gift, Twitter, Github, Instagram, Globe } from 'lucide-react'
 import { motion } from 'framer-motion'
+import { useEffect, useRef } from 'react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 export default function Footer() {
+  const footerRef = useRef<HTMLElement>(null)
+  const linksRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from(linksRef.current?.children || [], {
+        scrollTrigger: {
+          trigger: footerRef.current,
+          start: 'top 90%',
+        },
+        y: 20,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.1,
+      })
+    }, footerRef)
+    return () => ctx.revert()
+  }, [])
   const trustBadges = [
     { icon: Shield, label: '100% COMMUNITY FOCUSED' },
     { icon: Lock, label: 'LIQUIDITY LOCKED' },
@@ -10,7 +33,7 @@ export default function Footer() {
   ]
 
   return (
-    <footer id="community" className="relative pt-10 pb-6">
+    <footer ref={footerRef} id="community" className="relative pt-10 pb-6">
       {/* Top border glow */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-apepe-green/50 to-transparent" />
 
@@ -23,7 +46,7 @@ export default function Footer() {
           transition={{ duration: 0.6 }}
           className="flex flex-col md:flex-row items-center justify-between gap-4 mb-10"
         >
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 flex-grow">
+          <div ref={linksRef} className="grid grid-cols-2 md:grid-cols-4 gap-4 flex-grow">
             {trustBadges.map((badge) => (
               <div
                 key={badge.label}

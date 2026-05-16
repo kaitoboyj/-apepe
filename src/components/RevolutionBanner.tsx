@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { Users, Shield, Eye, Gift, ArrowRight } from 'lucide-react'
+import { Users, Shield, Eye, Gift, ArrowRight, Rocket } from 'lucide-react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -192,7 +192,7 @@ export default function RevolutionBanner() {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   )

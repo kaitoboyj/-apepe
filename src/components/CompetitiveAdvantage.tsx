@@ -1,28 +1,44 @@
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { Check, X } from 'lucide-react'
+import { Check, X, Trophy, Sparkles } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 gsap.registerPlugin(ScrollTrigger)
 
 export default function CompetitiveAdvantage() {
   const sectionRef = useRef<HTMLDivElement>(null)
+  const headerRef = useRef<HTMLDivElement>(null)
   const tableRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from(tableRef.current, {
+      // Header animation
+      gsap.from(headerRef.current, {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top 80%',
-          toggleActions: 'play none none reverse',
         },
-        y: 60,
+        y: 50,
         opacity: 0,
-        duration: 0.9,
-        ease: 'power3.out',
+        duration: 1,
       })
+
+      // Table rows animation
+      const rows = tableRef.current?.querySelectorAll('.grid-row')
+      if (rows) {
+        gsap.from(rows, {
+          scrollTrigger: {
+            trigger: tableRef.current,
+            start: 'top 75%',
+          },
+          x: -30,
+          opacity: 0,
+          duration: 0.8,
+          stagger: 0.1,
+          ease: 'power2.out',
+        })
+      }
     }, sectionRef)
 
     return () => ctx.revert()
@@ -98,7 +114,7 @@ export default function CompetitiveAdvantage() {
           {rows.map((row, rowIndex) => (
             <div
               key={row.label}
-              className={`grid grid-cols-5 ${
+              className={`grid grid-cols-5 grid-row hover:bg-white/[0.02] transition-colors ${
                 rowIndex !== rows.length - 1 ? 'border-b border-apepe-border/50' : ''
               }`}
             >
