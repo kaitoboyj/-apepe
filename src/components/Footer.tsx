@@ -1,4 +1,4 @@
-import { Shield, Lock, Search, BarChart3, Send, Gift } from 'lucide-react'
+import { Shield, Lock, Search, BarChart3, Send, Gift, Twitter } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 export default function Footer() {
@@ -45,6 +45,15 @@ export default function Footer() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="flex-shrink-0"
           >
+            <a
+              href="https://x.com/apepe_wls?s=21"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-8 py-3 bg-white/5 border-2 border-white/20 text-white font-bold rounded-full hover:bg-white/10 hover:border-white/40 transition-all duration-300"
+            >
+              <Twitter size={18} />
+              Follow Twitter
+            </a>
             <a
               href="https://t.me/+jainc8Q3gqJhYmI0"
               target="_blank"
@@ -115,6 +124,14 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} $APEPE. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
+            <a
+              href="https://x.com/apepe_wls?s=21"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-white transition-colors"
+            >
+              <Twitter size={20} />
+            </a>
             <a
               href="https://t.me/+jainc8Q3gqJhYmI0"
               target="_blank"

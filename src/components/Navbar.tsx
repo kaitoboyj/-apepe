@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Send, Menu, X, Gift } from 'lucide-react'
+import { Send, Menu, X, Gift, Twitter } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 export default function Navbar() {
@@ -60,6 +60,14 @@ export default function Navbar() {
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center gap-3">
             <a
+              href="https://x.com/apepe_wls?s=21"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2.5 bg-white/5 border border-white/10 rounded-full text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300"
+            >
+              <Twitter size={18} />
+            </a>
+            <a
               href="https://pegswap.xyz/apepe"
               target="_blank"
               rel="noopener noreferrer"
@@ -109,6 +117,15 @@ export default function Navbar() {
                   {link.label}
                 </a>
               ))}
+              <a
+                href="https://x.com/apepe_wls?s=21"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-2.5 bg-white/5 border border-white/10 rounded-full text-white mt-2"
+              >
+                <Twitter size={16} />
+                <span className="text-sm font-semibold">Twitter (X)</span>
+              </a>
               <a
                 href="https://pegswap.xyz/apepe"
                 target="_blank"
